@@ -3,6 +3,13 @@
 ## About the Project
 A purchase requisition system written in Python for BACT7501 Assessment 2. Staff submit requisitions, small ones are approved automatically, and larger ones wait for a manager's decision.
 
+## Project Features
+- Staff information input
+- Multiple item entries
+- Automatic total calculation
+- Manager approval system
+- Requisition statistics
+
 ## Features
 - Generates a requisition ID automatically, starting at 10001.
 - Stores the staff details (date, staff ID and staff name) and one or more items with their prices.
