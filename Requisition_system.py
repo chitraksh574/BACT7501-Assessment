@@ -1,7 +1,6 @@
 # BACT7501 Assessment 2 - Purchase Requisition System
 # Uses simple Python concepts: classes, methods, lists, loops and conditionals.
 
-
 class Requisition:
     def __init__(self, requisition_id):
         # Store all details for a single purchase requisition
