@@ -3,7 +3,7 @@
 
 class Requisition:
     def __init__(self, requisition_id):
-        # Store all details for a single purchase requisition
+        # Store all information for a purchase requisition
         self.requisition_id = requisition_id
         self.date = ""
         self.staff_id = ""
@@ -14,7 +14,7 @@ class Requisition:
         self.approval_reference = "Not available"
 
     def staff_info(self):
-        # Ask the user for staff details and check that inputs are not blank
+        # Prompt user to input staff information and ensure there is no blank input
         print("Enter staff information:")
 
         while True:
@@ -42,7 +42,7 @@ class Requisition:
                 break
 
     def requisitions_details(self):
-        # Ask the user to enter one or more purchase items and prices
+        # Prompt the user for some number of purchasing items and prices
         print("Enter requisition items:")
 
         while True:
@@ -63,10 +63,10 @@ class Requisition:
                 except ValueError:
                     print("Invalid price. Please enter a number.")
 
-            # Save the item name and price as a small list inside self.items
+            # Store the item name and price in a small list called self.items
             self.items.append([item_name, item_price])
 
-            # Ask whether the user wants to add another item
+            # Query if the user wishes to enter more information
             while True:
                 another_item = input("Add another item? (yes/no): ").lower()
                 if another_item == "yes" or another_item == "no":
@@ -77,13 +77,13 @@ class Requisition:
             if another_item == "no":
                 break
 
-        # Calculate the total cost of all entered items
+        # Total cost calculation of all the entered items
         self.total = 0
         for item in self.items:
             self.total += item[1]
 
     def requisition_approval(self):
-        # Automatically approve requisitions below $500; keep $500 or more Pending
+        # Approve Requisition Automatically Up To $500; Above $500 Leave as Pending
         if self.total < 500:
             self.status = "Approved"
             self.approval_reference = self.staff_id + str(self.requisition_id)[-3:]
@@ -92,7 +92,7 @@ class Requisition:
             self.approval_reference = "Not available"
 
     def respond_requisition(self):
-        # Allow a manager to approve, reject, or leave a pending requisition pending
+        # Allow the manager to accept, decline, or keep the pending requisition pending
         if self.status == "Pending":
             print("")
             print(f"Reviewing Requisition ID: {self.requisition_id}")
@@ -119,7 +119,7 @@ class Requisition:
                     print("Invalid choice. Please enter approve, reject, or pending.")
 
     def display_requisition(self):
-        # Print the full summary for this requisition
+        # Print full summary of this requisition
         print("")
         print("Requisition Summary")
         print(f"Date: {self.date}")
@@ -136,12 +136,12 @@ class Requisition:
 
 class RequisitionSystem:
     def __init__(self):
-        # Requisition IDs start at 10001 (10000 + 1 for the first requisition)
+        # Requisition IDs begin from 10001 (10000 + 1 for the first requisition)
         self.requisition_counter = 10000
         self.requisitions = []
 
     def add_requisition(self):
-        # Create a new requisition, collect inputs, apply rules, and display result
+        # Step One - New Requisition Creation with Inputs Applied and Rule Enforcement
         self.requisition_counter += 1
         new_requisition = Requisition(self.requisition_counter)
         new_requisition.staff_info()
@@ -151,7 +151,7 @@ class RequisitionSystem:
         self.requisitions.append(new_requisition)
 
     def review_pending_requisitions(self):
-        # Check if there are any pending requisitions for manager review
+        #Ensure that there are no requisitions awaiting review by the manager
         has_pending = False
         for req in self.requisitions:
             if req.status == "Pending":
